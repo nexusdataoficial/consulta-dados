@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexusData Platform</title>
+
+<style>
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;}
+body{background:#0b0f1a;color:#e5e7eb;line-height:1.6;}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;width:100%;height:60px;background:#020617;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid #1f2937;z-index:999;}
+.logo{font-size:20px;font-weight:bold;color:#38bdf8;}
+.menu-btn{font-size:28px;cursor:pointer;}
+
+/* MENU LATERAL */
+.sidebar{position:fixed;top:0;left:-260px;width:260px;height:100%;background:#020617;border-right:1px solid #1f2937;transition:0.3s;padding-top:60px;z-index:998;}
+.sidebar a{display:block;padding:15px 25px;color:#cbd5f5;text-decoration:none;border-bottom:1px solid #111827;}
+.sidebar a:hover{background:#111827;}
+.sidebar.open{left:0;}
+.close-kdkdkfkbtn{position:absolute;top:15px;right:20px;font-size:25px;cursor:pointer;}
+
+/* HERO */
+.hero{padding-top:120px;padding-bottom:100px;text-align:center;background:linear-gradient(120deg,#020617,#0f172a,#020617);}
+.hero h1{font-size:46px;margin-bottom:20px;color:#38bdf8;}
+.hero p{max-width:700px;margin:auto;opacity:.8;font-size:18px;}
+
+/* BOTÕES */
+.btn{background:#2563eb;border:none;padding:14px 28px;color:white;border-radius:8px;margin-top:30px;cursor:pointer;font-size:16px;}
+.btn:hover{background:#1d4ed8;}
+
+/* SECTIONS */
+.section{padding:80px 20px;max-width:1200px;margin:auto;}
+.section-title{text-align:center;font-size:32px;margin-bottom:40px;}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;}
+
+/* CARD */
+.card{background:#020617;border:1px solid #1f2937;border-radius:12px;padding:25px;box-shadow:0 10px 30px rgba(0,0,0,0.4);}
+.card h3{margin-bottom:10px;color:#38bdf8;}
+.card p{opacity:.85;}
+
+/* PLANOS */
+.price{font-size:34px;margin:15px 0;color:#38bdf8;}
+
+/* MODAL CADASTRO */
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:1000;}
+.modal-content{background:#020617;padding:30px;border-radius:10px;width:90%;max-width:450px;}
+.modal-content h3{margin-bottom:20px;color:#38bdf8;}
+.modal-content input{width:100%;margin-bottom:10px;padding:12px;border-radius:6px;border:1px solid #1f2937;background:#020617;color:white;}
+.modal-buttons{display:flex;justify-content:space-between;margin-top:10px;}
+.modal-buttons .btn{flex:1;}
+.modal-buttons .btn:first-child{margin-right:10px;}
+
+/* MODAL PAGAMENTO */
+#pagamento{display:none;margin-top:20px;}
+.qr{text-align:center;margin-top:20px;}
+.qr img{width:200px;margin-bottom:10px;}
+.pix{background:#111827;padding:10px;border-radius:6px;font-size:12px;word-break:break-all;}
+
+/* FOOTER */
+footer{background:#020617;padding:60px 20px;margin-top:80px;border-top:1px solid #1f2937;}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;max-width:1200px;margin:auto;}
+.footer-grid h4{margin-bottom:15px;}
+.footer-grid p{opacity:.7;font-size:14px;}
+.copy{text-align:center;margin-top:40px;opacity:.6;}
+
+</style>
+</head>
+<body>
+
+<header>
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<div class="logo">NexusData</div>
+</header>
+
+<div class="sidebar" id="sidebar">
+<div class="close-btn" onclick="closeMenu()"></div>
+<a href="#inicio">Início</a>
+<a href="#recursos">Recursos</a>
+<a href="#modulos">Módulos</a>
+<a href="#planos">Planos</a>
+<a href="#faq">FAQ</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+<h1>Plataforma Profissional de Inteligência de Dados</h1>
+<p>A NexusData é uma plataforma moderna desenvolvida para profissionais e empresas que precisam acessar informações estratégicas de forma rápida, organizada e segura.</p>
+<button class="btn" onclick="scrollPlanos()">Ver Planos</button>
+</section>
+
+<!-- RECURSOS -->
+<section class="section" id="recursos">
+<h2 class="section-title">Principais Recursos</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Consultas em alta velocidade</h3>
+<p>Nossa infraestrutura utiliza servidores otimizados que permitem realizar consultas de dados em segundos, garantindo produtividade e eficiência para profissionais.</p>
+</div>
+
+<div class="card">
+<h3>Base de dados atualizada</h3>
+<p>O sistema é constantemente atualizado para garantir que as informações disponíveis sejam sempre relevantes e atuais.</p>
+</div>
+
+<div class="card">
+<h3>Segurança avançada</h3>
+<p>Utilizamos protocolos modernos de segurança e criptografia para proteger os dados dos usuários e garantir a privacidade das informações.</p>
+</div>
+
+<div class="card">
+<h3>Interface profissional</h3>
+<p>O painel foi projetado para oferecer uma experiência intuitiva, organizada e eficiente, permitindo que qualquer usuário utilize o sistema com facilidade.</p>
+</div>
+
+</div>
+</section>
+<!-- MODULOS -->
+<section class="section" id="modulos">
+<h2 class="section-title">Módulos da Plataforma</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Módulo de Consulta</h3>
+<p>Permite acesso rápido a diferentes tipos de informações. Organiza resultados de forma inteligente e permite visualizar dados relevantes em segundos.</p>
+</div>
+
+<div class="card">
+<h3>Análise de Dados</h3>
+<p>Ferramentas avançadas de análise permitem interpretar informações e gerar relatórios completos, ajudando profissionais a tomar decisões estratégicas.</p>
+</div>
+
+<div class="card">
+<h3>Relatórios Automatizados</h3>
+<p>Usuários podem gerar relatórios automaticamente com base em dados consultados, economizando tempo e aumentando a produtividade.</p>
+</div>
+
+<div class="card">
+<h3>Integração API</h3>
+<p>Empresas podem integrar seus próprios sistemas através da API profissional, permitindo automação de consultas e integração com outras aplicações.</p>
+</div>
+
+<div class="card">
+<h3>Painel Inteligente</h3>
+<p>O painel administrativo apresenta informações organizadas, estatísticas de uso e ferramentas para gerenciar consultas e atividades dentro da plataforma.</p>
+</div>
+
+<div class="card">
+<h3>Controle de Acesso</h3>
+<p>Permite gerenciar usuários e acessos simultâneos, garantindo limites e permissões configuradas corretamente.</p>
+</div>
+
+</div>
+</section>
+
+<!-- ESTATISTICAS -->
+<section class="section">
+<h2 class="section-title">Estatísticas da Plataforma</h2>
+<div class="grid">
+
+<div class="card">
+<h3>+12.000</h3>
+<p>Usuários registrados utilizando a plataforma diariamente para consultas e análise de dados profissionais.</p>
+</div>
+
+<div class="card">
+<h3>+2 Milhões</h3>
+<p>Consultas realizadas mensalmente dentro da infraestrutura da plataforma NexusData.</p>
+</div>
+
+<div class="card">
+<h3>99.9%</h3>
+<p>Taxa de disponibilidade do sistema, garantindo acesso confiável e contínuo para todos os usuários.</p>
+</div>
+
+<div class="card">
+<h3>+40 Servidores</h3>
+<p>Infraestrutura distribuída para garantir alta performance e estabilidade durante o uso da plataforma.</p>
+</div>
+
+</div>
+</section>
+
+<!-- PLANOS -->
+<section class="section" id="planos">
+<h2 class="section-title">Planos de Acesso</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Plano Básico</h3>
+<div class="price">R$99,90</div>
+<p>Ideal para usuários individuais que precisam realizar consultas de dados de forma rápida e organizada.</p>
+<ul>
+<li>1 acesso simultâneo</li>
+<li>2000 consultas diárias</li>
+<li>Suporte padrão</li>
+</ul>
+<button class="btn" onclick="abrirModal('Básico')">Comprar</button>
+</div>
+
+<div class="card">
+<h3>Plano Empresarial</h3>
+<div class="price">R$330</div>
+<p>Voltado para empresas e profissionais que precisam de mais capacidade de consultas e acessos simultâneos.</p>
+<ul>
+<li>8 acessos simultâneos</li>
+<li>5000 consultas diárias</li>
+<li>Suporte prioritário</li>
+</ul>
+<button class="btn" onclick="abrirModal('Empresarial')">Comprar</button>
+</div>
+
+<div class="card">
+<h3>Plano API</h3>
+<div class="price">R$1000</div>
+<p>Plano completo para integração direta com a API da plataforma, permitindo automação total de consultas dentro de sistemas externos.</p>
+<ul>
+<li>Acesso completo à API</li>
+<li>3000 requisições diárias</li>
+<li>Suporte 24h</li>
+</ul>
+<button class="btn" onclick="abrirModal('API')">Comprar</button>
+</div>
+
+</div>
+</section>
+
+<!-- MODAL CENTRALIZADA -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<h3 id="tituloPlano">Cadastro</h3>
+<input id="email" placeholder="Seu Gmail">
+<input id="usuario" placeholder="Usuário">
+<input type="password" id="senha1" placeholder="Senha">
+<input type="password" id="senha2" placeholder="Confirmar senha">
+
+<div class="modal-buttons">
+<button class="btn" onclick="confirmarCadastro()">Confirmar</button>
+<button class="btn" onclick="fecharModal()">Cancelar</button>
+</div>
+
+<div id="pagamento">
+<div class="qr">
+<img src="qrcode.png">
+<div class="pix" id="pixcode">00020101021226790014br.gov.bcb.pix2557brcode.starkinfra.com/v2/d48373435aed42f085a59fc94229e0e35204000053039865802BR5918ZEXYY TRADING LTDA6009Sao Paulo62070503***63047D97</div>
+<button class="btn" onclick="copiarPix()">Copiar código PIX</button>
+<p style="margin-top:10px;font-size:13px;">Após o pagamento será enviado um código de confirmação para seu Gmail.</p>
+</div>
+</div>
+
+</div>
+</div>
+
+
+<!-- FAQ -->
+<section class="section" id="faq">
+<h2 class="section-title">Perguntas Frequentes</h2>
+<div class="grid">
+<div class="card">
+<h3>Como funciona o acesso?</h3>
+<p>Após realizar o cadastro e o pagamento do plano escolhido, sua conta será ativada automaticamente e você poderá acessar a plataforma utilizando seu usuário e senha.</p>
+</div>
+<div class="card">
+<h3>Existe limite de consultas?</h3>
+<p>Sim. Cada plano possui um limite diário de consultas para garantir estabilidade e desempenho para todos os usuários.</p>
+</div>
+<div class="card">
+<h3>Posso mudar de plano?</h3>
+<p>Sim. A qualquer momento é possível alterar o plano para um superior, aumentando os limites de consultas e acessos simultâneos.</p>
+</div>
+<div class="card">
+<h3>Os dados são seguros?</h3>
+<p>Toda a infraestrutura utiliza criptografia e protocolos de segurança modernos para garantir proteção total das informações.</p>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-grid">
+<div>
+<h4>Sobre a Plataforma</h4>
+<p>A NexusData é uma plataforma desenvolvida para oferecer acesso profissional a sistemas de consulta e análise de dados. Nosso objetivo é fornecer ferramentas modernas e eficientes para profissionais e empresas que precisam de informações rápidas e organizadas.</p>
+</div>
+<div>
+<h4>Recursos</h4>
+<p>Consultas inteligentes</p>
+<p>Relatórios avançados</p>
+<p>Integração API</p>
+<p>Painel administrativo</p>
+</div>
+<div>
+<h4>Planos</h4>
+<p>Básico</p>
+<p>Empresarial</p>
+<p>API</p>
+</div>
+<div>
+<h4>Contato</h4>
+<p>Email: suporte@nexusdata.com</p>
+<p>Suporte técnico especializado</p>
+<p>Atendimento profissional</p>
+</div>
+</div>
+<div class="copy">
+© 2026 NexusData Platform - Todos os direitos reservados.
+</div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+let planoSelecionado="";
+
+// MENU CORRIGIDO
+const sidebar = document.getElementById("sidebar");
+const menuBtn = document.querySelector(".menu-btn");
+
+menuBtn.addEventListener("click", function(e){
+    sidebar.classList.toggle("open");
+    e.stopPropagation(); // Evita que o clique feche imediatamente
+});
+
+document.addEventListener("click", function(e){
+    if(!sidebar.contains(e.target) && !menuBtn.contains(e.target)){
+        sidebar.classList.remove("open");
+    }
+});
+
+// SCROLL PARA PLANOS
+function scrollPlanos(){
+    document.getElementById("planos").scrollIntoView({behavior:"smooth"})
+}
+
+// MODAL CENTRALIZADA
+function abrirModal(plano){
+    planoSelecionado=plano
+    document.getElementById("tituloPlano").innerText="Cadastro - Plano "+plano
+    document.getElementById("modal").style.display="flex"
+}
+function fecharModal(){
+    document.getElementById("modal").style.display="none"
+}
+
+// CONFIRMAR CADASTRO
+function confirmarCadastro(){
+    let s1=document.getElementById("senha1").value
+    let s2=document.getElementById("senha2").value
+    if(s1!==s2){alert("As senhas não coincidem"); return}
+    document.getElementById("pagamento").style.display="block"
+    alert("Cadastro confirmado! A seguir, realize o pagamento via PIX.")
+}
+
+// CONTINUAR PARA CHECKOUT
+function continuarCheckout(){
+    let s1=document.getElementById("senha1Cadastro").value
+    let s2=document.getElementById("senha2Cadastro").value
+    if(s1!==s2){alert("As senhas não coincidem"); return}
+    document.getElementById("planoEscolhido").innerText="Plano selecionado: "+planoSelecionado
+    document.getElementById("checkout").scrollIntoView({behavior:"smooth"})
+}
+
+// PIX
+function copiarPix(){
+    let texto=document.getElementById("pixcode").innerText
+    navigator.clipboard.writeText(texto)
+    alert("Código PIX copiado!")
+}
+</script>
